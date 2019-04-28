@@ -111,7 +111,7 @@ LightHouse 适合开发人员使用，它可以在性能、PWA、无障碍、最
 
 ### WebpageTest
 
-LightHouse 可以在不同地理位置使用真实的设备测试性能，而且也可以运行 LightHouse。
+WebpageTest 可以在不同地理位置使用真实的设备测试性能，而且也可以运行 LightHouse。
 
 
 **功能特性**
