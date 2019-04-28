@@ -8,26 +8,26 @@
 客户端渲染：页面在 JavaScript，CSS 等资源文件加载完毕后开始渲染，路由为客户端路由，也就是我们经常谈到的 SPA（Single Page Application）。
 
 
-![客户端渲染](./.assets/客户端渲染.jpg)
+![客户端渲染](./img/客户端渲染.jpg)
 
 
 - 服务端渲染：页面由服务端直接返回给浏览器，路由为服务端路由，URL 的变更会刷新页面，原理与 ASP，PHP 等传统后端框架类似。
 
 
-![服务端渲染](./.assets/服务端渲染.jpg)
+![服务端渲染](./img/服务端渲染.jpg)
 
 
 - 同构：英文表述为 Isomorphic 或 Universal，即编写的 JavaScript 代码可同时运行于浏览器及 Node.js 两套环境中，用服务端渲染来提升首屏的加载速度，首屏之后的路由由客户端控制，即在用户到达首屏后，整个应用仍是一个 SPA。
 
 
-![同构](./.assets/同构.jpg)
+![同构](./img/同构.jpg)
 
 
 https://github.com/topics/universal?o=desc&s=stars
 
 https://github.com/topics/isomorphic?o=desc&s=stars
 
-![同构](./.assets/universal截图.bmp)
+![同构](./img/universal截图.bmp)
 
 
 
@@ -39,10 +39,10 @@ https://github.com/topics/isomorphic?o=desc&s=stars
 - 服务端和客户端维护一份代码就行了。
 
 
-![同构和客户端首屏加载效果对比](./.assets/同构和客户端首屏加载效果对比.gif)
+![同构和客户端首屏加载效果对比](./img/同构和客户端首屏加载效果对比.gif)
 
 
-![同构和客户端首屏加载时长对比](./.assets/同构和客户端首屏加载时长对比.jpg)
+![同构和客户端首屏加载时长对比](./img/同构和客户端首屏加载时长对比.jpg)
 
 
 
@@ -125,7 +125,7 @@ componentWillMount(){
 ## 技术架构
 
 
-![同构开发架构](./.assets/同构开发架构.jpg)
+![同构开发架构](./img/同构开发架构.jpg)
 
 
 
@@ -263,7 +263,7 @@ last 2 QQAndroid versions
 
 ## 示例图
 
-![公共库](./.assets/公共库.png)
+![公共库](./img/公共库.png)
 
 
 ## 图片
