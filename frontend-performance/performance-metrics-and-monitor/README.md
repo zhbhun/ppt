@@ -276,8 +276,6 @@ Note:[以用户为中心的性能指标](https://developers.google.com/web/funda
 Note:X 轴上的数字显示加载时间，而 Y 轴上条的高度显示体验到特定时间段中加载时间的用户相对数量。 正如此图表所示，虽然最大的用户群体验到的加载时间不到 1 或 2 秒，但仍有很多用户体验到相当长的加载时间。
 
 
-### 一些现有监控系统实现
-
 ![apm1.png](./img/apm1.png)
 
 
@@ -344,17 +342,23 @@ Performance 接口提供了获取网页资源加载相关的性能数据，这�
 
 
 1. `window.performance.getEntriesByType('frame')`
-2. `window.performance.getEntries()`：在返回的数组中过滤出相关数据
-Note:截止到目前（201904），帧率相关的性能指标数据接口还没有相关浏览器支持，需要监测帧率可以通过 `requestAnimationframe` 来模拟实现。
+2. `window.performance.getEntries()`
+
+    在返回的数组中过滤出相关数据
+    Note:截止到目前（201904），帧率相关的性能指标数据接口还没有相关浏览器支持，需要监测帧率可以通过 `requestAnimationframe` 来模拟实现。
 
 
 #### 耗时较长的任务
 
 `Performance​Long​Task​Timing` 封装了耗时较长的任务的性能数据，可以通过以下方式获取：
 
-`new PerformanceObserver(function () {}).observe({ entryTypes: ['longtask'] })`
+```js
+new PerformanceObserver(function (performance​Long​Task​Timing) {
+  // 事件回调
+}).observe({ entryTypes: ['longtask'] })
+```
 
-ps：目前这个 API 还在实验当中，没有得到浏览器的广泛支持，目前只有 Chrome 和安卓支持。但类似帧率，可以使用 `requestAnimationframe` 来模拟实现。
+Note:目前这个 API 还在实验当中，没有得到浏览器的广泛支持，目前只有 Chrome 和安卓支持。但类似帧率，可以使用 `requestAnimationframe` 来模拟实现。
 
 
 #### 自定义性能测试
@@ -411,5 +415,6 @@ Performance 提供了一套基于高精度时间的性能测试接口。
 
 ## TODO
 
-1. 整理性能优化规范
-2. 实现性能监控平台
+1. 性能优化规范
+2. 性能测试工具
+2. 性能监控平台
