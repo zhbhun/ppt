@@ -249,7 +249,7 @@ last 2 QQAndroid versions
 
 
 
-## [@meetyou/react-hybrid](http://192.168.3.98:3000/)
+## 公共库
 
 
 - 基于优秀的开源组件库二次开发
@@ -257,7 +257,7 @@ last 2 QQAndroid versions
     - react-native-web
     - antd design mobile
 
-- UI 组件符合美柚 UED 设计稿规范
+- UI 组件符合 UED 设计稿规范
 - 提供常用的工具函数
 
 
@@ -274,7 +274,7 @@ last 2 QQAndroid versions
 
 
 ```javascript
-import { Image } from '@meetyou/react-hybrid';
+import { Image } from 'react-hybrid';
 
 <Image
   lazy
@@ -326,18 +326,3 @@ import { Image } from '@meetyou/react-hybrid';
     ├── styles
     └── vendors
 ```
-
-
-
-## 项目集成
-
-
-### 旧项目
-
-...
-
-
-### 新项目
-
-1. `npm install @meetyou/create-my-next -g --registry=http://registry.cnpm.seeyouyima.com`
-2. `create-my-next <project-directory>`
