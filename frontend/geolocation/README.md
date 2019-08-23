@@ -318,7 +318,15 @@ Note
 - 以地理位置为基础的小型社区
 
 
+
 ## 最佳实践
 
 
-![best-practice.svg](./img/best-practice.png)
+### 版本1
+
+![best-practice2.svg](./img/best-practice1.svg)
+
+
+### 版本2
+
+![best-practice2.svg](./img/best-practice2.png)
