@@ -1,4 +1,4 @@
 - [《基于 Next.js 的同构开发框架》](./isomorphic)
 - [《performance-metrics-and-monitor》](./frontend-performance/performance-metrics-and-monitor)
 - [《how-browsers-work》](./frontend-performance/how-browsers-work)
-- [《<script>》](./frontend/<script>)
+- [《`<script>`》](./frontend/<script>)
