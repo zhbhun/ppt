@@ -30,7 +30,7 @@ Note:下面会帮助大家重新回顾下 script 最基本的用法，学习如�
 </script>
 ```
 
-Note: `<script>` 一般就两种用法，参考[基础用法示例](./examples/basic-usage)
+Note: `<script>` 一般就两种用法，参考[基础用法示例](https://github.com/zhbhun/frontend-learning/blob/f162fd2ee5/language/html/script/examples/basic-usage/index.html)
 
 
 ### 更多脚本类型
@@ -59,13 +59,13 @@ Note: `<script>` 一般就两种用法，参考[基础用法示例](./examples/b
     </script>
     ```
 
-Note:`<script>` 通过 `type` 属性是用来标识[脚本内容类型](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textjavascript)，一般分为以下三种类型：JavaScript MIME、module，其他任意 MIME。在 H5 普及之前（HTML4），我们经常会看到 `<script>` 配有支持配置 `type="text/javascript"`。但在 H5 规范中已经呼吁开发人员取消了 `type="text/javascript"`（默认不配就是 JavaScript 类型）。ps：在早期的浏览器中，支持 [MIME 嗅探标准](https://mimesniff.spec.whatwg.org/)（定义了 script 的内容类型，以及如何处理），有效的 JavaScript MIME 类型可以是 `text/livescript`、`application/ecmascript`、`text/javascript1.0` 等。但现在这些类型已经被 [RFC 4329](https://tools.ietf.org/html/rfc4329) 废弃了，只允许使用 `text/javascript`。module 类型将代码作为 JavaScript 模块处理。其他 MIEME 类型脚本内嵌（`src` 属性会被忽略）在 `<script>` 中的内容作为数据数据块使用，浏览器不会解析执行该标签。
+Note:`<script>` 通过 `type` 属性是用来标识[脚本内容类型](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textjavascript)，一般分为以下三种类型：JavaScript MIME、module，其他任意 MIME。在 H5 普及之前（HTML4），我们经常会看到 `<script>` 配有支持配置 `type="text/javascript"`。但在 H5 规范中已经呼吁开发人员取消了 `type="text/javascript"`（默认不配就是 JavaScript 类型）。ps：在早期的浏览器中，支持 [MIME 嗅探标准](https://mimesniff.spec.whatwg.org/#mime-type-groups)（定义了 script 的内容类型，以及如何处理），有效的 JavaScript MIME 类型可以是 `text/livescript`、`application/ecmascript`、`text/javascript1.0` 等。但现在这些类型已经被 [RFC 4329](https://tools.ietf.org/html/rfc4329) 废弃了，只允许使用 `text/javascript`。module 类型将代码作为 JavaScript 模块处理。其他 MIEME 类型脚本内嵌（`src` 属性会被忽略）在 `<script>` 中的内容作为数据数据块使用，浏览器不会解析执行该标签，例如 [脚本模板类型](https://github.com/zhbhun/frontend-learning/blob/f162fd2ee5/language/html/script/examples/basic-usage/template.html)。
 
 
 
 ## ES Module
 
-Note: 最新的浏览器大部分都默认支持模块化语法，我们需要做的只是在 script 标签元素上声明 `type=module` 就可以了。
+Note: [最新的浏览器](https://caniuse.com/#feat=es6-module)大部分都默认支持模块化语法，我们需要做的只是在 script 标签元素上声明 `type=module` 就可以了。
 
 
 ## 启用模块化
@@ -97,8 +97,10 @@ export default {
 };
 ```
 
+Note: 在 script 标签上声明 type 属性为 `module`，引入包含 ES Module 语法的脚本。
 
-### 一些常见问题
+
+### 一些注意事项
 
 
 `import` 模块支持相对路径、绝对路径和 URL，不支持直接的模块名（类似 Nodejs 第三方模块）
@@ -108,6 +110,8 @@ export default {
 - `/`
 - URL
 
+Note: [测试示例](https://github.com/zhbhun/frontend-learning/blob/f162fd2ee5/language/html/script/examples/module-usage/path.html)
+
 
 没有配置 `type="module"`，但脚本里使用了 ES Module 时会报语法错误
 
@@ -116,15 +120,19 @@ Uncaught SyntaxError: Unexpected identifier
 ```
 
 
-对于不支持 `type="module"` 的浏览器遇到这样的 script 标签时，不会解析执行。为了解决兼容性问题，script 引入了属性 `nomodule`，带有该属性的 script 标签会被支持 `module` 的浏览器忽略。
+浏览器不支持 `type="module"`
 
 ```html
 <script type="module" src="module.js"></script>
 <script nomodule src="fallback.js"></script>
 ```
 
+Note:对于不支持 `type="module"` 的浏览器遇到这样的 script 标签时，不会解析执行。为了解决兼容性问题，script 引入了属性 `nomodule`，带有该属性的 script 标签会被支持 `module` 的浏览器忽略。
+
 
 module 类型的 script 默认是开启 defer（脚本会推迟到 HTML 解析完成后执行），即使是内联的 module script 脚本，也会被 defer（普通的内联脚本是不支持 defer 的）。
+
+Note: [测试示例](https://github.com/zhbhun/frontend-learning/blob/f162fd2ee5/language/html/script/examples/module-defer/index.html)，输出结果：2n > 2 > 1 > 1n
 
 
 module script 支持 async（在解析 HTML 的同时并行下载，下载完成后立即解析执行）
@@ -142,7 +150,7 @@ Note:跟普通的 scripts 不同, module scripts (以及它们的 imports 行为
 
 没有凭证信息(credentials)
 
-Note:当请求在同一安全域下，大多数的 CORS-based APIs 都会发送凭证信息 (cookies 等)，但 fetch() 和 module scripts 例外 – 它们并不发送凭证信息，除非我们要求它们。我们可以通过添加 crossorigin 属性来让同源 module 脚本携带凭证信息，如果你也想让非同源 module 脚本也携带凭证信息，使用 crossorigin="use-credentials" 属性。需要注意的是，非同源脚本需要具有 `Access-Control-Allow-Credentials: true` 头信息。
+Note:大多数的 CORS-based APIs 都会发送凭证信息 (cookies 等)，但 fetch() 和 module scripts 例外 – 它们并不发送凭证信息，除非我们要求它们。果你也想让 CORS module 脚本也携带凭证信息，使用 crossorigin="use-credentials" 属性。需要注意的是，非同源脚本需要具有  `Access-Control-Allow-Credentials: true` 头信息。
 
 
 
@@ -179,7 +187,7 @@ Note:通过理解 crossorigin 的作用机制可以明白，设置 crossorigin �
 1. 跨域脚本的服务器设置了跨域响应头
 2. 跨域脚本 script 标签设置了 crossorigin 属性
 
-Note: [crossorgin 测试示例](./examples/cross-origin)
+Note: [crossorgin 测试示例](https://github.com/zhbhun/frontend-learning/tree/f162fd2ee592b82e8dace2516f26a3cc4dd108a8/language/html/script/examples/cross-origin)
 
 
 
@@ -236,6 +244,8 @@ Note:readyState 变为 interactive 之后页面才能交互吗？ —— 否
 
 ![html-process.jpg](./img/html-process.jpg)
 
+Note: [测试示例](https://github.com/zhbhun/frontend-learning/blob/f162fd2ee5/language/html/script/examples/process/normal.html)，观察几个时间段
+
 
 1. [1] initial readyState:loading
 2. [2] readyState:interactive
@@ -244,12 +254,14 @@ Note:readyState 变为 interactive 之后页面才能交互吗？ —— 否
 5. [3] readyState:complete
 7. [3] window onload
 
-Note:根据测试示例 [process-normal](./examples/process/normal.html) 结果分析可知，整个流程主要分为三个阶段：1）HTML 解析中；2）HTML 解析完成，处于加载子资源中；3）子资源加载完成，HTML 完成加载
+Note:分析测试示例运行结果，整个流程主要分为三个阶段：1）HTML 解析中；2）HTML 解析完成，处于加载子资源中；3）子资源加载完成，HTML 完成加载
 
 
 ### script 加载、解析和执行流程
 
 ![script-flow-normal.jpg](./img/script-flow-normal.jpg)
+
+Note: 在上文的测试中，我们可以发现 HTML 的解析是被 script 脚本阻塞的，如果没有太多出脚本和样式外的子资源，那么 DOM 解析是占用时间最长的阶段
 
 
 ```html
@@ -291,6 +303,11 @@ Note:虽然现代浏览器为我们做了很多优化工作，但是我们可以
 Note:感谢 IE！微软意识到了这些性能问题，于是在 Internet Explorer 4 中引入了 “defer”。该属性被采纳到 HTML4 里并出现在了其他浏览器中。 —— [defer attribute for external scripts](https://caniuse.com/#feat=script-defer)
 
 
+![html-script-defer-process.jpg](./img/html-script-defer-process.jpg)
+
+Note: 这是将上文测试示例中的 script 设置了 defer 属性后的 HTML 解析日志，可以发现 document.readyState 变为 interactive 的时间提前了，意味着 HTML 更快的完成了解析（好像也没什么用？对于旧浏览器 IE 来说，可以将脚本放在 head 部分让浏览器更早的解析到脚本并去下载，并且连续的多个脚本可以并发下载）。
+
+
 ```html
 <head>
   <!-- ... -->
@@ -299,7 +316,7 @@ Note:感谢 IE！微软意识到了这些性能问题，于是在 Internet Explo
 </head>
 ```
 
-Note:在上面的例子中，浏览器会并行下载两个脚本，并在 DOMContentLoaded 触发前(按顺序)执行它们。需要注意的是 “defer” 对于动态添加或是没有 “src” 属性的脚本不生效。否则，延迟的脚本会在文档解析完毕后，按照它们的添加顺序执行。
+Note:我们先上面的这个例子，浏览器会并行下载两个脚本，并在 HTML 解析完成后 DOMContentLoaded 触发前(按顺序)执行它们。需要注意的是 “defer” 对于动态添加或是没有 “src” 属性的脚本不生效。否则，延迟的脚本会在文档解析完毕后，按照它们的添加顺序执行。
 
 
 **成也 IE，败也 IE**
@@ -328,6 +345,11 @@ Note:常言道：有所得，必有所失。在 IE4-9 下存在一个讨厌的 b
 Note: HTML5 提供了一个新属性，“async”，它会假设你并不准备使用 document.write，当也不需要等到文档解析完毕后才执行。
 
 
+![html-script-async-process.jpg](./img/html-script-async-process.jpg)
+
+Note: 下面是将上文测试示例中的 script 设置了 async 属性后的 HTML 解析日志。可以发现 document.readyState 变为 interactive 和 DOMContentLoaded 的触发时间提前了，脚本需要等到下载结束后才能执行。
+
+
 ```html
 <head>
   <!-- ... -->
@@ -336,14 +358,14 @@ Note: HTML5 提供了一个新属性，“async”，它会假设你并不准备
 </head>
 ```
 
-Note: 浏览器会并行下载两个脚本并尽快执行它们.不过，因为它们会尽可能快的执行，“2.js” 就有可能先于 “1.js” 而执行。如果它们互不依赖倒还好，比如说 “1.js” 是一个用于记录访问的脚本，它不会影响 “2.js”。但要是 “1.js” 是 jQuery 的一个 CDN 拷贝，而 “2.js” 依赖于它，那你的页面就可能会被报错信息淹没。
+Note: 浏览器会并行下载两个脚本并尽快执行它们。不过，因为它们会尽可能快的执行，“2.js” 就有可能先于 “1.js” 而执行。如果它们互不依赖倒还好，比如说 “1.js” 是一个用于记录访问的脚本，它不会影响 “2.js”。但要是 “1.js” 是 jQuery 的一个 CDN 拷贝，而 “2.js” 依赖于它，那你的页面就可能会被报错信息淹没。
 
 
 - RequireJS
 - LabJS
 - 其他
 
-Note: 为了解决模块依赖关系，诞生了一批前端脚本加载库，例如：Requirejs，Labjs，Seajs 等等。RequireJS 将它们包裹在一个回调函数中，这样库就可以按照正确的顺序调用它们。LabJS 使用了奇特的 hack，脚本会使用一个错误的 mime 类型，比如 `<script type="script/cache" src="...">`。一旦所有脚本加载完毕，它们会使用正确的类型重新添加一遍，希望浏览器能够使用缓存获取它们并立即按顺序执行。这一 hack 依赖于一个约定俗成却并非规范的浏览器行为，但是 HTML5 规定了浏览器不去下载错误类型的脚本，该 hack 便失效了。其他方案使用 XHR 来并行下载然后按照顺序调用 eval()，这个方法不适用于跨域脚本，除非它们拥有 CORS 头并且浏览器支持该设置。可是，脚本加载器自身就有性能问题，你必须要等到库的 JavaScript 下载并解析完毕后才能开始下载其他它管理的脚本。还有，我们如何去加载脚本加载器呢？庆幸的是，现代的前端项目打包工具 webpack 已经帮助我们解决了这个问题，由 webpack 将项目的代码拆分打包成几个文件，这几个文件的加载顺序是没有依赖关系的。
+Note: 在为了解决模块依赖关系的问题上，前端诞生了一批优秀的脚本加载库，例如：Requirejs，Labjs，Seajs 等等。RequireJS 将它们包裹在一个回调函数中，这样库就可以按照正确的顺序调用它们。LabJS 使用了奇特的 hack，脚本会使用一个错误的 mime 类型，比如 `<script type="script/cache" src="...">`。一旦所有脚本加载完毕，它们会使用正确的类型重新添加一遍，希望浏览器能够使用缓存获取它们并立即按顺序执行。这一 hack 依赖于一个约定俗成却并非规范的浏览器行为，但是 HTML5 规定了浏览器不去下载错误类型的脚本，该 hack 便失效了。其他方案使用 XHR 来并行下载然后按照顺序调用 eval()，这个方法不适用于跨域脚本，除非它们拥有 CORS 头并且浏览器支持该设置。可是，脚本加载器自身就有性能问题，你必须要等到库的 JavaScript 下载并解析完毕后才能开始下载其他它管理的脚本。还有，我们如何去加载脚本加载器呢？庆幸的是，现代的前端项目打包工具 webpack 已经帮助我们解决了这个问题，由 webpack 将项目的代码拆分打包成几个文件，这几个文件的加载顺序是没有依赖关系的。
 
 
 ### iOS Safari 渲染被阻塞
@@ -357,6 +379,10 @@ Note: iOS Safari 的 HTML 不仅仅被脚本阻塞解析，还会被脚本渲染
 <video src="./img/script-block-ios-render-block.mp4" style="width: 90;height: 160"></video>
 
 Note: 在部分场景下 iOS Safari 又不会被脚本阻塞渲染，例如在 HTML 中插入一张图片之类的。为什么 iOS Safari 会这里处理？是 bug，还是特意为之？此外，其他现代浏览实际在有些情况下也是会阻塞渲染的，参见[示例](./examples/performance)。
+
+
+[其他浏览器是否存在这个问题呢？](https://github.com/zhbhun/frontend-learning/blob/f162fd2ee5/language/html/script/examples/performance/README.md)
+
 
 
 ### 基于 DOM API 加载脚本
@@ -450,7 +476,65 @@ Note: 这些是属于[内容安全策略](http://www.ruanyifeng.com/blog/2016/09
 
 ## 兼容性
 
+
 ![compatibility.png](./img/compatibility.png)
+
+
+### 普通脚本
+
+```html
+<script src="//other-domain.com/1.js"></script>
+<script src="2.js"></script>
+```
+
+- 规范说：同时下载，在前面没有任何挂起的 CSS 后按顺序执行，在执行完毕前阻塞解析和渲染。
+- 浏览器说：好的先生！
+
+
+### 延迟
+
+```html
+<script src="//other-domain.com/1.js" defer></script>
+<script src="2.js" defer></script>
+```
+
+- 规范说：同时下载，在 DOMContentLoaded 触发前按顺序执行。没有 “src” 属性的脚本忽略 “defer”。
+- IE < 10 说：我可能会在执行 1.js 的过程中去执行 2.js。这是不是很好玩？？
+- 不支持 `defer` 的浏览器说：我不知道 “defer” 是什么意思，我会当作它们不存在来加载脚本。
+- 其他浏览器说：好的，不过要是脚本没有 “src” 属性，我可能不会忽略 “defer”。
+
+
+### 异步
+
+```
+<script src="//other-domain.com/1.js" async></script>
+<script src="2.js" async></script>
+```
+
+- 规范说：同时下载，谁先下载完就执行谁。
+- 不支持 `async` 的浏览器说： ‘async’ 是个什么玩意儿？我就当它不存在好了。
+- 其他浏览器说：好的，没问题。
+
+
+### 异步 false
+
+```js
+[
+  '1.js',
+  '2.js'
+].forEach(function(src) {
+  var script = document.createElement('script');
+  script.src = src;
+  script.async = false;
+  document.head.appendChild(script);
+});
+```
+
+
+- 规范说：同时下载，全部下载后按顺序执行。
+- IE < 10 说：不认识 “async”，但是我有一个解决方案，那就是用 “onreadystatechange”。
+- 不支持 `async` 的浏览器说：我不认识这个 “async”，脚本加载完毕后我就会执行，不管考虑顺序问题。
+- 除以上这些之外的浏览器说：我是你的朋友，我会按老规矩处理。
 
 
 
